@@ -1,0 +1,98 @@
+/* Estilos básicos para la página */
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Imagen de fondo para el header */
+.header-fondo {
+    background-image: url('imagenes/header.jpg');
+    background-size: cover;  /* La imagen cubre todo el header */
+    background-position: center;  /* Centra la imagen */
+    color: white;  /* Cambiar el color del texto si es necesario */
+    padding:80px;  /* Espaciado interno */
+    text-align: center;
+    margin: 0;
+}
+.fondo-titulos {
+    background-image: url('imagenes/titulos.jpg');
+    background-size: cover;  /* La imagen cubre todo el header */
+    background-position: center;  /* Centra la imagen */
+    color: white;  /* Cambiar el color del texto si es necesario */
+    padding:40px;  /* Espaciado interno */
+    text-align: center;
+    margin: 0;
+}
+
+.fondo-contexto {
+    background-image: url('imagenes/coronavirus-banner.jpg');
+    background-size: cover;  /* La imagen cubre todo el header */
+    background-position: center;  /* Centra la imagen */
+    padding:40px;  /* Espaciado interno */
+    text-align: center;
+    margin-bottom: 0;
+}
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+/* Alinear el texto como un bloque justificado */
+.texto-contexto {
+    text-align: justify;
+    margin: 0 auto;
+    width: 30%;  /* Ajustar el ancho del texto */
+    color: white;  /* Cambiar el color del texto si es necesario */
+    padding:40x;  /* Espaciado interno */
+}
+
+.texto-bloque {
+    text-align: justify;
+    margin: 0 auto;
+    width: 60%;  /* Ajustar el ancho del texto */
+    color: white;  /* Cambiar el color del texto si es necesario */
+    padding:40x;  /* Espaciado interno */
+}
+
+
+/* Flexbox para el nuevo contenedor con otra imagen de fondo */
+.contenedor2 {
+    display: flex;  /* Activar Flexbox */
+    justify-content: space-between;  /* Separar gráfico y texto */
+    align-items: center;  /* Alinear verticalmente */
+    background-image: url('imagenes/casa.jpeg');  /* Nueva imagen de fondo */
+    background-size: cover;  /* Asegura que la imagen cubra todo el área */
+    background-position: center;  /* Centra la imagen */
+    padding: 20px;  /* Añade espacio interno */
+}
+
+/* Reutilizamos el estilo del gráfico y el texto */
+.grafico {
+    width: 60%;  /* El gráfico ocupará el 60% del ancho */
+    height: 500px;
+}
+
+.texto {
+    width: 35%;  /* El texto ocupará el 35% del ancho */
+    padding-left: 20px;  /* Separación entre texto y gráfico */
+    color: white;
+}

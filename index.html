@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualización con Plotly.js</title>
+    <!-- Incluir Plotly.js desde CDN -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <style>
+
+                /* Estilo para el contenedor principal */
+        .contenedor {
+        display: flex;  /* Activar Flexbox */
+        justify-content: space-between;  /* Separar gráfico y texto */
+        align-items: center;  /* Centrar verticalmente */
+        background-image: url('imagenes/casa.jpeg');  /* Imagen de fondo */
+        background-size: cover;  /* Asegura que la imagen cubra todo el área */
+        background-position: center;  /* Centra la imagen */
+        
+        padding: 20px;  /* Añade algo de espacio interior */
+        }
+
+        /* Estilo para el gráfico */
+        .grafico {
+            width: 60%;  /* 60% del ancho para el gráfico */
+            height: 500px;
+            
+        }
+
+        /* Estilo para el texto */
+        .texto {
+            width: 35%;  /* 35% del ancho para el texto descriptivo */
+            padding-left: 20px;  /* Separación entre el gráfico y el texto */
+            color: white;
+        }
+
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+ 
+    <header class="header-fondo">
+        <h1>Pandemia y Violencia en la puerta de la casa</h1>
+    </header>
+
+
+    <div class="fondo-contexto">
+        <div class="texto-contexto">
+            <h2>Contexto</h2>
+            <p>
+                La pandemia de COVID-19, declarada como una emergencia de salud pública en enero de 2020, generó grandes disrupciones sociales y 
+        económicas. Una de las más significativas fue 
+        el confinamiento de millones de personas en sus hogares, lo que trajo consigo un aumento en los casos de violencia intrafamiliar. 
+        Este proyecto de visualización de datos tiene como objetivo analizar las estadísticas de violencia intrafamiliar en Chile durante 
+        los últimos años, con especial atención a los años 2021 y 2022. A través de gráficos interactivos, se busca demostrar cómo el 
+        confinamiento por la pandemia pudo haber contribuido a un incremento en los casos reportados, destacando las variaciones y 
+        tendencias que surgieron en este período crítico.
+            </p>
+        </div>
+    </div>
+    
+ 
+
+    <h2 class="fondo-titulos">Gráfico de Violencia Intrafamiliar</h2>
+
+    <div class="contenedor">
+        <!-- Slot para el gráfico -->
+        <div id="grafico1" class="grafico"></div>
+
+        <!-- Slot para el texto a la derecha -->
+        <div class="texto">
+            <h2>Descripción del Gráfico</h2>
+            <p class="texto-bloque">
+                Este gráfico muestra los datos de violencia intrafamiliar a lo largo de los años. 
+                Cada punto representa un año específico, y los años 2021 y 2022 están resaltados en rojo. 
+                La evolución de los casos puede ser observada claramente con la línea azul que conecta 
+                todos los puntos.
+            </p>
+        </div>
+    </div>
+    <h2 class="fondo-titulos">Gráfico de Violencia Intrafamiliar</h2>
+
+    <!-- Contenedor con nueva imagen de fondo -->
+<div class="contenedor2">
+    <!-- Texto a la izquierda -->
+    <div class="texto">
+        <h2>Descripción del Gráfico</h2>
+        <p>
+            Este gráfico muestra los tipos de violencia intrafamiliar durante el año 2021.
+            Los datos están agrupados en categorías como violencia hacia adultos mayores, hombres, mujeres, niños y casos no clasificados.
+        </p>
+    </div>
+
+    <!-- Gráfico a la derecha -->
+    <div id="grafico2" class="grafico"></div>
+</div>
+
+
+ 
+    <h1 class="fondo-titulos">Funnel Plot Dinámico de Violencia Intrafamiliar BONUS</h1>
+
+    <div id="miGrafico" style="width:100%;height:500px;"></div>
+
+    <!-- Enlazar tu archivo main.js -->
+    <script src="main.js"></script>
+    
+    <!--<script src="main.js"></script> -->
+</body>
+</html>
