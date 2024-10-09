@@ -2,10 +2,9 @@
 fetch('estadisticas-delictuales_Chile.json')
   .then(response => response.json())  // Leer el contenido como JSON
   .then(data => {
-    // Proceso para crear el gráfico de líneas y puntos
     let registros = data.Hoja3;
     let violenciaPorAno = {};
-    
+
     // Sumar los valores de violencia intrafamiliar por año
     registros.forEach(registro => {
       let año = registro['AÑO'];
@@ -36,19 +35,51 @@ fetch('estadisticas-delictuales_Chile.json')
       name: 'casos de violencia intrafamiliar'
     };
 
+    // Agregar anotaciones con flechas para 2021 y 2022
     var layout = {
-      //title: 'Suma de Violencia Intrafamiliar por Año',
       paper_bgcolor: 'white',  // Cambiar el color de fondo del gráfico
       plot_bgcolor: 'white',  // Cambiar el color de fondo de la zona de trazado
       xaxis: { 
-       /// title: 'Año',
         tickvals: años  // Mostrar todos los años en el eje X
       },
       yaxis: { 
-        ////title: 'Suma de Violencia Intrafamiliar',
         rangemode: 'tozero'  // Asegura que el eje Y comience desde 0
       },
-      showlegend: true
+      showlegend: true,
+      annotations: [
+        {
+          x: '2021',  // Año 2021
+          y: violenciaPorAno['2021'],  // Valor de violencia para 2021
+          xref: 'x',
+          yref: 'y',
+          text: 'Año 2021',
+          showarrow: true,
+          arrowhead: 6,
+          ax: -50,  // Desplazamiento horizontal de la flecha
+          ay: -40,  // Desplazamiento vertical de la flecha
+          font: {
+            color: 'red',
+            size: 12
+          },
+          arrowcolor: 'red'
+        },
+        {
+          x: '2022',  // Año 2022
+          y: violenciaPorAno['2022'],  // Valor de violencia para 2022
+          xref: 'x',
+          yref: 'y',
+          text: 'Pico en 2022',
+          showarrow: true,
+          arrowhead: 6,
+          ax: 50,  // Desplazamiento horizontal de la flecha
+          ay: -40,  // Desplazamiento vertical de la flecha
+          font: {
+            color: 'red',
+            size: 12
+          },
+          arrowcolor: 'red'
+        }
+      ]
     };
 
     // Dibujar el gráfico en el div 'grafico1' combinando la línea y los puntos
@@ -163,17 +194,24 @@ fetch('estadisticas-delictuales_Chile.json')
       type: 'funnel',
       y: tipos,  // Tipos de violencia en el eje Y
       x: valoresIniciales,  // Valores de violencia en el eje X
-      textinfo: "value+percent initial",  // Mostrar el valor y el porcentaje
+      textinfo: "value+percent total",  // Mostrar el valor y el porcentaje
       marker: { color: 'blue' }
     };
 
     var layout = {
       title: `Comparación de Tipos de Violencia Intrafamiliar en ${añoInicial}`,
       xaxis: { title: 'Cantidad de Casos' },
-      yaxis: { title: 'Tipos de Violencia' },
-      showlegend: false
-    };
-
+      ///yaxis: { title: 'Tipos de Violencia' },
+      showlegend: false,
+      width: 865,   // Mantener el ancho del gráfico
+      height: 500,  // Mantener la altura del gráfico
+      margin: {
+          l: 240,  // Margen izquierdo ajustado
+          r: 50,  // Margen derecho ajustado
+          t: 50,  // Margen superior ajustado
+          b: 50   // Margen inferior ajustado
+      }
+  };
     // Dibujar el gráfico inicial
     Plotly.newPlot('miGrafico', [datos], layout);
 

@@ -35,6 +35,16 @@ body {
     text-align: center;
     margin-bottom: 0;
 }
+
+.fondo-dinamico {
+    background-image: url('imagenes/familia.jpg');
+    background-size: cover;  /* La imagen cubre todo el header */
+    background-position: center;  /* Centra la imagen */
+    padding:40px;  /* Espaciado interno */
+    text-align: center;
+    margin-bottom: 0;
+}
+
 button {
     padding: 10px 20px;
     background-color: #007BFF;
@@ -95,4 +105,43 @@ footer {
     width: 35%;  /* El texto ocupará el 35% del ancho */
     padding-left: 20px;  /* Separación entre texto y gráfico */
     color: white;
+}
+#graficoContainer {
+    display: flex;
+    justify-content: center;  /* Centrar el gráfico horizontalmente */
+    align-items: center;      /* Alinear verticalmente si es necesario */
+    width: 100%;
+}
+
+.fondo-conclusion {
+    background-image: url('imagenes/pizarra.jpg');
+    background-size: cover;  /* La imagen cubre todo el header */
+    background-position: center;  /* Centra la imagen */
+    padding:40px;  /* Espaciado interno */
+    text-align: center;
+    margin-bottom: 0;
+}
+
+
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;  /* Si quieres que se mantenga siempre visible */
+    bottom: 0;
+    width: 100%;
+}
+
+.footer p {
+    margin: 5px 0;  /* Ajustar el espaciado entre los párrafos */
+}
+
+.footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
 }
