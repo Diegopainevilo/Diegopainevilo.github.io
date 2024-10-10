@@ -145,3 +145,19 @@ footer {
 .footer a:hover {
     text-decoration: underline;
 }
+
+.texto-conclusion {
+    text-align: justify;
+    margin: 0 auto;
+    width: 30%;  /* Ajustar el ancho del texto */
+    color: black;  /* Cambiar el color del texto si es necesario */
+    padding:40x;  /* Espaciado interno */
+}
+.fondo-extra {
+    background-image: url('imagenes/furry.png');
+    background-size: cover;  /* La imagen cubre todo el header */
+    background-position: center;  /* Centra la imagen */
+    padding:300px;  /* Espaciado interno */
+    text-align: center;
+    margin-bottom: 0;
+}
