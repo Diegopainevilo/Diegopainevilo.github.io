@@ -31,7 +31,7 @@ body {
     background-image: url('imagenes/coronavirus-banner.jpg');
     background-size: cover;  /* La imagen cubre todo el header */
     background-position: center;  /* Centra la imagen */
-    padding:40px;  /* Espaciado interno */
+    padding:40px;  /* Espaciado interno s*/
     text-align: center;
     margin-bottom: 0;
 }
@@ -39,7 +39,7 @@ body {
 .fondo-dinamico {
     background-image: url('imagenes/familia.jpg');
     background-size: cover;  /* La imagen cubre todo el header */
-    background-position: center;  /* Centra la imagen as*/
+    background-position: center;  /* Centra la imagen */
     padding:40px;  /* Espaciado interno */
     text-align: center;
     margin-bottom: 0;
@@ -160,4 +160,25 @@ footer {
     padding:300px;  /* Espaciado interno */
     text-align: center;
     margin-bottom: 0;
+}
+
+
+
+
+
+.fila {
+    display: flex;
+    justify-content: space-between; /* Espacio entre columnas */
+    align-items: center; /* Alinear al centro verticalmente */
+    background-color: black; 
+    
+}
+
+.columna {
+    flex: 1; /* Cada columna ocupa el mismo espacio */
+    text-align: center; /* Centrar texto dentro de la columna */
+    padding: 60px;
+    border: 0px solid #ccc; /* Borde opcional para ver las columnas */
+    color: white;
+
 }
