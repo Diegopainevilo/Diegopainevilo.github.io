@@ -37,16 +37,19 @@ fetch('estadisticas-delictuales_Chile.json')
 
     // Agregar anotaciones con flechas para 2021 y 2022
     var layout = {
-      title: 'Casos de violencia intrafamiliar',  // Título conciso y descriptivo
+      title: {
+        text: 'Casos de violencia intrafamiliar<br><span style="font-size: 16px; color: grey;">De 2020 a 2021 se registro un aumento de cerca de 26.000 casos.</span>',
+        font: {
+          size: 20
+        }
+      },  // Título principal con subtítulo
       paper_bgcolor: 'white',  // Color de fondo del gráfico
       plot_bgcolor: 'white',   // Color de fondo de la zona de trazado
       xaxis: { 
         tickvals: años,  // Mostrar todos los años en el eje X
-        //title: 'Año'     // Etiqueta del eje X
       },
       yaxis: { 
         rangemode: 'tozero',   // Asegura que el eje Y comience desde 0
-        //title: 'Número de Casos'  // Etiqueta del eje Y
       },
       showlegend: false,  // Eliminar la leyenda
       annotations: [
@@ -73,6 +76,7 @@ fetch('estadisticas-delictuales_Chile.json')
     Plotly.newPlot('grafico1', [lineaConPuntos], layout);
   })
   .catch(error => console.error('Error al cargar el archivo JSON:', error));
+
 ///////////////////////////////////////
 let añoSeleccionado = 2021;
 
@@ -113,7 +117,7 @@ fetch('estadisticas-delictuales_Chile.json')
       y: tipos,  // Tipos de violencia en el eje Y
       x: valores,  // Valores de violencia en el eje X
       textinfo: "value+percent total",  // Mostrar el valor y el porcentaje
-      marker: { color: 'blue' }
+      marker: { color: 'grey' }
     };
 
     var layout = {
@@ -182,7 +186,7 @@ fetch('estadisticas-delictuales_Chile.json')
       y: tipos,  // Tipos de violencia en el eje Y
       x: valoresIniciales,  // Valores de violencia en el eje X
       textinfo: "value+percent total",  // Mostrar el valor y el porcentaje
-      marker: { color: 'blue' }
+      marker: { color: 'grey' }
     };
 
     var layout = {

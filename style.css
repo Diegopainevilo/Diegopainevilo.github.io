@@ -89,7 +89,8 @@ footer {
     display: flex;  /* Activar Flexbox */
     justify-content: space-between;  /* Separar gráfico y texto */
     align-items: center;  /* Alinear verticalmente */
-    background-image: url('imagenes/casa.jpeg');  /* Nueva imagen de fondo */
+    
+    background-image: url('imagenes/casa.jpeg');
     background-size: cover;  /* Asegura que la imagen cubra todo el área */
     background-position: center;  /* Centra la imagen */
     padding: 20px;  /* Añade espacio interno */
