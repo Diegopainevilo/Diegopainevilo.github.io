@@ -79,7 +79,6 @@ fetch('estadisticas-delictuales_Chile.json')
 
 ///////////////////////////////////////
 let añoSeleccionado = 2021;
-
 // Cargar el archivo JSON usando fetch
 fetch('estadisticas-delictuales_Chile.json')
   .then(response => response.json())  // Leer el contenido como JSON
@@ -111,19 +110,23 @@ fetch('estadisticas-delictuales_Chile.json')
     let tipos = Object.keys(tiposViolencia);
     let valores = Object.values(tiposViolencia);
 
+    // Crear un array de colores, donde "Violencia intrafamiliar a mujer" será rojo y el resto gris
+    let colores = tipos.map(tipo => {
+      return tipo === "Violencia intrafamiliar a mujer" ? 'red' : 'grey';
+    });
+
     // Crear el funnel plot con Plotly.js
     var datos = {
       type: 'funnel',
       y: tipos,  // Tipos de violencia en el eje Y
       x: valores,  // Valores de violencia en el eje X
       textinfo: "value+percent total",  // Mostrar el valor y el porcentaje
-      marker: { color: 'grey' }
+      marker: { color: colores }  // Aplicar colores personalizados
     };
 
     var layout = {
       title: `Comparación de Tipos de Violencia Intrafamiliar en ${añoSeleccionado}`,
       xaxis: { title: 'Cantidad de Casos' },
-      ///yaxis: { title: 'Tipos de Violencia' },
       width: 865,   // Mantener el ancho del marco
       height: 500,  // Mantener la altura del gráfico
       margin: {
@@ -132,7 +135,6 @@ fetch('estadisticas-delictuales_Chile.json')
         t: 50,   // Ajustar margen superior
         b: 50    // Ajustar margen inferior
       },
-      
       xaxis: {
         domain: [0.2, 0.8]  // Hacer el gráfico más estrecho dentro del marco
       }
@@ -145,6 +147,7 @@ fetch('estadisticas-delictuales_Chile.json')
 
 
   /// GRAFICO DINAMICO
+// Cargar el archivo JSON para animar los años
 // Cargar el archivo JSON para animar los años
 fetch('estadisticas-delictuales_Chile.json')
   .then(response => response.json())  // Leer el contenido como JSON
@@ -181,18 +184,22 @@ fetch('estadisticas-delictuales_Chile.json')
     let tipos = Object.keys(violenciaPorAno[añoInicial]);
     let valoresIniciales = Object.values(violenciaPorAno[añoInicial]);
 
+    // Definir colores: "Violencia intrafamiliar a mujer" en rojo, el resto en gris
+    let coloresIniciales = tipos.map(tipo => {
+      return tipo === "Violencia intrafamiliar a mujer" ? 'red' : 'grey';
+    });
+
     var datos = {
       type: 'funnel',
       y: tipos,  // Tipos de violencia en el eje Y
       x: valoresIniciales,  // Valores de violencia en el eje X
       textinfo: "value+percent total",  // Mostrar el valor y el porcentaje
-      marker: { color: 'grey' }
+      marker: { color: coloresIniciales }  // Aplicar colores iniciales
     };
 
     var layout = {
       title: `Comparación de Tipos de Violencia Intrafamiliar en ${añoInicial}`,
       xaxis: { title: 'Cantidad de Casos' },
-      ///yaxis: { title: 'Tipos de Violencia' },
       showlegend: false,
       width: 865,   // Mantener el ancho del gráfico
       height: 500,  // Mantener la altura del gráfico
@@ -202,7 +209,8 @@ fetch('estadisticas-delictuales_Chile.json')
           t: 50,  // Margen superior ajustado
           b: 50   // Margen inferior ajustado
       }
-  };
+    };
+
     // Dibujar el gráfico inicial
     Plotly.newPlot('miGrafico', [datos], layout);
 
@@ -212,9 +220,17 @@ fetch('estadisticas-delictuales_Chile.json')
       let añoActual = años[indice];
       let valoresActuales = Object.values(violenciaPorAno[añoActual]);
 
-      // Actualizar los datos
+      // Definir colores: "Violencia intrafamiliar a mujer" en rojo, el resto en gris
+      let coloresActuales = tipos.map(tipo => {
+        return tipo === "Violencia intrafamiliar a mujer" ? 'red' : 'grey';
+      });
+
+      // Actualizar los datos con los nuevos valores y colores
       Plotly.animate('miGrafico', {
-        data: [{ x: valoresActuales }],
+        data: [{
+          x: valoresActuales,
+          marker: { color: coloresActuales }  // Actualizar colores dinámicamente
+        }],
         layout: { title: `Comparación de Tipos de Violencia Intrafamiliar en ${añoActual}` }
       }, {
         transition: { duration: 500 },
