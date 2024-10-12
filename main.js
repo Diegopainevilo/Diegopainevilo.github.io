@@ -29,53 +29,40 @@ fetch('estadisticas-delictuales_Chile.json')
       x: años,
       y: valoresViolencia,
       type: 'scatter',
-      mode: 'lines+markers',  // Línea con puntos
-      line: { color: 'blue' },  // Color de la línea
+      mode: 'lines',  // Línea sin puntos
+      line: { color: 'grey' },  // Color de la línea
       marker: { size: 10, color: colores },  // Colores personalizados para los puntos
       name: 'casos de violencia intrafamiliar'
     };
 
     // Agregar anotaciones con flechas para 2021 y 2022
     var layout = {
-      paper_bgcolor: 'white',  // Cambiar el color de fondo del gráfico
-      plot_bgcolor: 'white',  // Cambiar el color de fondo de la zona de trazado
+      title: 'Casos de violencia intrafamiliar',  // Título conciso y descriptivo
+      paper_bgcolor: 'white',  // Color de fondo del gráfico
+      plot_bgcolor: 'white',   // Color de fondo de la zona de trazado
       xaxis: { 
-        tickvals: años  // Mostrar todos los años en el eje X
+        tickvals: años,  // Mostrar todos los años en el eje X
+        //title: 'Año'     // Etiqueta del eje X
       },
       yaxis: { 
-        rangemode: 'tozero'  // Asegura que el eje Y comience desde 0
+        rangemode: 'tozero',   // Asegura que el eje Y comience desde 0
+        //title: 'Número de Casos'  // Etiqueta del eje Y
       },
-      showlegend: true,
+      showlegend: false,  // Eliminar la leyenda
       annotations: [
         {
-          x: '2021',  // Año 2021
-          y: violenciaPorAno['2021'],  // Valor de violencia para 2021
+          x: '2021.5',  // Punto medio entre 2021 y 2022
+          y: (violenciaPorAno['2021'] + violenciaPorAno['2022']) / 2,  // Valor medio de los dos años
           xref: 'x',
           yref: 'y',
-          text: 'Año 2021',
+          text: 'Aumento significativo durante 2021-2022',
           showarrow: true,
           arrowhead: 6,
-          ax: -50,  // Desplazamiento horizontal de la flecha
-          ay: -40,  // Desplazamiento vertical de la flecha
+          ax: 0,    // Desplazamiento horizontal de la flecha (centrado)
+          ay: -50,  // Desplazamiento vertical de la flecha
           font: {
             color: 'red',
-            size: 12
-          },
-          arrowcolor: 'red'
-        },
-        {
-          x: '2022',  // Año 2022
-          y: violenciaPorAno['2022'],  // Valor de violencia para 2022
-          xref: 'x',
-          yref: 'y',
-          text: 'Pico en 2022',
-          showarrow: true,
-          arrowhead: 6,
-          ax: 50,  // Desplazamiento horizontal de la flecha
-          ay: -40,  // Desplazamiento vertical de la flecha
-          font: {
-            color: 'red',
-            size: 12
+            size: 14
           },
           arrowcolor: 'red'
         }
