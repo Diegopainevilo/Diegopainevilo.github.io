@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <audio id="sonidoBoton" src="audios/boton.mp3" preload="auto"></audio>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualización con Plotly.js</title>
@@ -16,7 +17,7 @@
         .contenedor {
         display: flex;  /* Activar Flexbox */
         justify-content: space-between;  /* Separar gráfico y texto */
-        align-items: center;  /* Centrar verticalmente */
+        align-items: center;
         background-image: url('imagenes/casa.jpeg');  /* Imagen de fondo */
         background-size: cover;  /* Asegura que la imagen cubra todo el área */
         background-position: center;  /* Centra la imagen */
@@ -42,11 +43,40 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<header class="header-fondo">
+    <audio id="reproductor" controls style="position: absolute; top: 10px; right: 10px;">
+        <source src="musica/audio1.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    
+    <script>
 
-    <header class="header-fondo">
-        <h1>Violencia Intrafamiliar en Chile</h1>
-    </header>
+        const listaAudios = [
+            "musica/audio1.mp3",
+            "musica/audio2.mp3",
+            "musica/audio3.mp3",
+            "musica/audio4.mp3"
+        ];
+    
+        let indiceActual = 0;
+        const reproductor = document.getElementById("reproductor");
+    
+
+        reproductor.onended = function() {
+            indiceActual++;
+            if (indiceActual < listaAudios.length) {
+                reproductor.src = listaAudios[indiceActual];
+                reproductor.play();
+            } else {
+
+                indiceActual = 0;
+                reproductor.src = listaAudios[indiceActual];
+            }
+        };
+    </script>
+    <h1>Violencia Intrafamiliar en Chile</h1>
+</header>
+
     <h2 class="fondo-titulos">Fabián Marcelo Márquez Sepúlveda y Diego Pablo Eugenio Painevilo Martínez</h2>
 
     <div class="fondo-contexto">
@@ -68,19 +98,66 @@
     
     <h2 class="fondo-titulos">Gráfico de Violencia Intrafamiliar</h2>
 
-    <div class="contenedor">
-        <!-- Slot para el gráfico -->
-        <div id="grafico1" class="grafico"></div>
+<div class="contenedor">
+    <div id="grafico1" class="grafico"></div>
 
-        <!-- Slot para el texto a la derecha -->
-        <div class="texto">
-            <h2>Descripción del Gráfico</h2>
-            <p class="texto-bloque">
-                Este gráfico muestra los datos de violencia intrafamiliar a lo largo de los años. 
-                Cada punto representa un año específico. Se da énfasis en los años 2021 y 2022 que están resaltados en rojo. 
-                La evolución de los casos puede ser observada a través de la línea gris.
-            </p>
-        </div>
+    <div class="texto">
+        <button id="botonDescripcion" onclick="toggleDescripcion()">Descripción</button>
+        <p id="textoDescripcion" class="texto-bloque" style="display: none;">
+            Este gráfico muestra los datos de violencia intrafamiliar a lo largo de los años. 
+            Cada punto representa un año específico. Se da énfasis en los años 2021 y 2022 que están resaltados en rojo. 
+            La evolución de los casos puede ser observada a través de la línea gris.
+        </p>
+        
+
+        <button id="botonConclusion" onclick="toggleConclusion()">Conclusión</button>
+        <p id="textoConclusion" class="texto-bloque" style="display: none;">
+            A través de este gráfico, es evidente el gran aumento de los casos de violencia intrafamiliar de 2020 hasta 2021, 
+            manteniéndose hasta el año 2022.<br>
+            La visualización refuerza la importancia de atender esta problemática,
+            especialmente durante situaciones de confinamiento,
+            demostrando que la pandemia tuvo un impacto profundo en la dinámica de violencia en el hogar.
+        </p>
+    </div>
+</div>
+
+<script>
+    const sonidoBoton = document.getElementById("sonidoBoton");
+
+    function toggleDescripcion() {
+        const textoDescripcion = document.getElementById("textoDescripcion");
+        const botonDescripcion = document.getElementById("botonDescripcion");
+
+        // Reproducir sonido
+        sonidoBoton.currentTime = 0;  
+        sonidoBoton.play();
+
+        if (textoDescripcion.style.display === "none") {
+            textoDescripcion.style.display = "block";
+            botonDescripcion.textContent = "Ocultar Descripción";
+        } else {
+            textoDescripcion.style.display = "none";
+            botonDescripcion.textContent = "Descripción";
+        }
+    }
+
+    function toggleConclusion() {
+        const textoConclusion = document.getElementById("textoConclusion");
+        const botonConclusion = document.getElementById("botonConclusion");
+
+        // Reproducir sonido
+        sonidoBoton.currentTime = 0;  
+        sonidoBoton.play();
+
+        if (textoConclusion.style.display === "none") {
+            textoConclusion.style.display = "block";
+            botonConclusion.textContent = "Ocultar Conclusión";
+        } else {
+            textoConclusion.style.display = "none";
+            botonConclusion.textContent = "Conclusión";
+        }
+    }
+</script>
     </div>
 
 
@@ -89,18 +166,7 @@
 
 
 
-    <div class="fondo-conclusion">
-        <h2 style="color: white; font-family: 'Roboto', sans-serif;">Conclusión del Gráfico de Violencia Intrafamiliar</h2>
 
-        <div class="texto-contexto">  
-            <p>
-                A través de este gráfico, es evidente cómo los años 2021 y 2022, en medio de la pandemia, 
-                experimentaron un notable aumento en los casos de violencia intrafamiliar. 
-                La visualización refuerza la importancia de atender esta problemática, especialmente durante situaciones 
-                de confinamiento, y demuestra que la pandemia tuvo un impacto profundo en la dinámica de violencia en el hogar.
-            </p>
-        </div>
-    </div>
    
     <h2 class="fondo-titulos">Gráfico de Tipos de Violencia Intrafamiliar</h2>
 

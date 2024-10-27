@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualización con Plotly.js</title>
+    <!-- Incluir Plotly.js desde CDN -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+
+    <style>
+
+                /* Estilo para el contenedor principal */
+        .contenedor {
+        display: flex;  /* Activar Flexbox */
+        justify-content: space-between;  /* Separar gráfico y texto */
+        align-items: center;  /* Centrar verticalmente */
+        background-image: url('imagenes/casa.jpeg');  /* Imagen de fondo */
+        background-size: cover;  /* Asegura que la imagen cubra todo el área */
+        background-position: center;  /* Centra la imagen */
+        
+        padding: 20px;  /* Añade algo de espacio interior */
+        }
+
+        /* Estilo para el gráfico */
+        .grafico {
+            width: 60%;  /* 60% del ancho para el gráfico */
+            height: 500px;
+            
+        }
+
+        /* Estilo para el texto */
+        .texto {
+            width: 35%;  /* 35% del ancho para el texto descriptivo */
+            padding-left: 20px;  /* Separación entre el gráfico y el texto */
+            color: white;
+        }
+
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header-fondo">
+        <h1>Violencia Intrafamiliar en Chile</h1>
+    </header>
+    <h2 class="fondo-titulos">Fabián Marcelo Márquez Sepúlveda y Diego Pablo Eugenio Painevilo Martínez</h2>
+
+    <div class="fondo-contexto">
+        <h2 style="color: white;">Contexto</h2>
+
+        <div class="texto-contexto">  
+            <p>
+                La pandemia de COVID-19, declarada como una emergencia de salud pública en enero de 2020, generó grandes disrupciones 
+                sociales y económicas. Una de las más significativas fue el confinamiento de millones de personas en sus hogares, 
+                lo que contribuyó a un aumento en los casos de violencia intrafamiliar, especialmente hacia las mujeres, quienes ya 
+                representaban una proporción desproporcionadamente alta de víctimas. Este proyecto de visualización de datos tiene 
+                como objetivo analizar las estadísticas de violencia intrafamiliar en Chile durante los últimos años, con especial 
+                atención a los años 2021 y 2022. A través de gráficos, se busca demostrar cómo el confinamiento por la pandemia acentuó 
+                una problemática que afecta principalmente a las mujeres, y destacar las tendencias que surgieron en este período 
+                crítico.
+            </p>
+        </div>
+    </div>
+    
+    <h2 class="fondo-titulos">Gráfico de Violencia Intrafamiliar</h2>
+
+    <div class="contenedor">
+        <!-- Slot para el gráfico -->
+        <div id="grafico1" class="grafico"></div>
+
+        <!-- Slot para el texto a la derecha -->
+        <div class="texto">
+            <h2>Descripción del Gráfico</h2>
+            <p class="texto-bloque">
+                Este gráfico muestra los datos de violencia intrafamiliar a lo largo de los años. 
+                Cada punto representa un año específico. Se da énfasis en los años 2021 y 2022 que están resaltados en rojo. 
+                La evolución de los casos puede ser observada a través de la línea gris.
+            </p>
+        </div>
+    </div>
+
+
+    
+
+
+
+
+    <div class="fondo-conclusion">
+        <h2 style="color: white; font-family: 'Roboto', sans-serif;">Conclusión del Gráfico de Violencia Intrafamiliar</h2>
+
+        <div class="texto-contexto">  
+            <p>
+                A través de este gráfico, es evidente cómo los años 2021 y 2022, en medio de la pandemia, 
+                experimentaron un notable aumento en los casos de violencia intrafamiliar. 
+                La visualización refuerza la importancia de atender esta problemática, especialmente durante situaciones 
+                de confinamiento, y demuestra que la pandemia tuvo un impacto profundo en la dinámica de violencia en el hogar.
+            </p>
+        </div>
+    </div>
+   
+    <h2 class="fondo-titulos">Gráfico de Tipos de Violencia Intrafamiliar</h2>
+
+    <!-- Contenedor con nueva imagen de fondo -->
+    <div class="contenedor2">
+    <!-- Texto a la izquierda -->
+    <div class="texto">
+        <h2 >Descripción del Gráfico</h2>
+        <p class="texto-bloque">
+            Este gráfico muestra cerca de 120.000 casos de los tipos de violencia intrafamiliar durante el año 2021.
+            Los datos están agrupados en categorías como violencia hacia adultos mayores, hombres, mujeres, niños y casos no clasificados.
+        </p>
+    </div>
+
+    <!-- Gráfico a la derecha -->
+    <div id="grafico2" class="grafico"></div>
+
+
+    
+    </div>
+
+    <div class="fila">
+        <div class="columna">75% de las víctimas en chile son mujeres</div>
+        <div class="columna">15% de las víctimas en chile son hombres</div>
+        <div class="columna">3% de las victimas en chile son adultos mayores</div>
+        <div class="columna">2% de las victimas en chile son niños</div>
+    </div>
+
+
+<div class="fondo-conclusion">
+    <h2 style="color: white;font-family: 'Roboto', sans-serif;">Conclusión del Gráfico de Tipos de Violencia Intrafamiliar</h2>
+
+    <div class="texto-contexto">  
+        <p>
+            A través de este gráfico funnel, se destaca que un 75% de los casos de violencia intrafamiliar están dirigidos a mujeres, 
+            lo que confirma la gravedad de esta problemática y la urgencia de abordarla. Aunque también se registran casos de violencia 
+            hacia hombres (15%), adultos mayores (3%), niños (2%) y casos no clasificados (4%), los datos subrayan cómo las mujeres 
+            siguen siendo las principales víctimas de violencia en el hogar. Esto refuerza la necesidad de generar conciencia sobre la 
+            vulnerabilidad de las mujeres, especialmente en situaciones de confinamiento como las vividas durante la pandemia.
+        </p>
+    </div>
+</div>
+
+
+
+    <h1 class="fondo-titulos">Funnel Plot Dinámico de Violencia Intrafamiliar BONUS</h1>
+    <!-- Contenedor para centrar el gráfico -->
+    <div class="fondo-dinamico">
+        <div id="graficoContainer" style="display: flex; justify-content: center;">
+            <div id="miGrafico"></div>
+        </div>
+        <script src="main.js"></script>
+    </div>
+
+    <div class="fondo-extra">
+    
+    </div>
+
+  
+        
+    <footer class="footer">
+        <p>&copy; 2024 Proyecto de Visualización de Datos - Violencia Intrafamiliar en Chile</p>
+        <p>InfoVis2024II</p>
+    </footer>
+    <!--<script src="main.js"></script> -->
+</body>
+</html>
