@@ -50,7 +50,7 @@
         Tu navegador no soporta el elemento de audio.
     </audio>
 
-    <!-- Barra de progreso y botón de silencio -->
+
     <div style="position: absolute; top: 10px; right: 10px;">
         <button id="botonMute" onclick="toggleMute()">Silenciar</button>
         <input type="range" id="barraProgreso" min="0" value="0" step="1" style="width: 200px;">
@@ -68,7 +68,10 @@
         const reproductor = document.getElementById("reproductor");
         const barraProgreso = document.getElementById("barraProgreso");
 
-        // Iniciar la reproducción de la primera canción al cargar la página
+
+        const sonidoBoton = new Audio("audios/boton.mp3");
+
+
         document.addEventListener('click', iniciarAudio);
 
         function iniciarAudio() {
@@ -77,28 +80,31 @@
             document.removeEventListener('click', iniciarAudio);
         }
 
-        // Cambiar de canción al terminar
+
         reproductor.onended = function() {
             indiceActual = (indiceActual + 1) % listaAudios.length;
             reproductor.src = listaAudios[indiceActual];
             reproductor.play();
         };
 
-        // Actualizar la barra de progreso mientras se reproduce la canción
+
         reproductor.ontimeupdate = function() {
             barraProgreso.max = reproductor.duration || 0;
             barraProgreso.value = reproductor.currentTime;
         };
 
-        // Permitir al usuario cambiar el tiempo de reproducción usando la barra de progreso
+ 
         barraProgreso.addEventListener('input', function() {
             reproductor.currentTime = barraProgreso.value;
         });
 
-        // Función para silenciar o activar el sonido
+
         function toggleMute() {
             reproductor.muted = !reproductor.muted;
             document.getElementById("botonMute").textContent = reproductor.muted ? "Activar sonido" : "Silenciar";
+            
+
+            sonidoBoton.play();
         }
     </script>
 
@@ -150,7 +156,7 @@
 </div>
 
 <script>
-    const sonidoBoton = document.getElementById("sonidoBoton");
+    //const sonidoBoton = document.getElementById("sonidoBoton");
 
     function toggleDescripcion() {
         const textoDescripcion = document.getElementById("textoDescripcion");
