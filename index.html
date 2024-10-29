@@ -44,36 +44,64 @@
 </head>
 
 <header class="header-fondo">
-    <audio id="reproductor" controls style="position: absolute; top: 10px; right: 10px;">
+    <!-- Audio de fondo sin controles visibles -->
+    <audio id="reproductor">
         <source src="musica/audio1.mp3" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
     </audio>
-    
-    <script>
 
+    <!-- Barra de progreso y botón de silencio -->
+    <div style="position: absolute; top: 10px; right: 10px;">
+        <button id="botonMute" onclick="toggleMute()">Silenciar</button>
+        <input type="range" id="barraProgreso" min="0" value="0" step="1" style="width: 200px;">
+    </div>
+
+    <script>
         const listaAudios = [
             "musica/audio1.mp3",
             "musica/audio2.mp3",
             "musica/audio3.mp3",
             "musica/audio4.mp3"
         ];
-    
+
         let indiceActual = 0;
         const reproductor = document.getElementById("reproductor");
-    
+        const barraProgreso = document.getElementById("barraProgreso");
 
+        // Iniciar la reproducción de la primera canción al cargar la página
+        document.addEventListener('click', iniciarAudio);
+
+        function iniciarAudio() {
+            reproductor.src = listaAudios[indiceActual];
+            reproductor.play();
+            document.removeEventListener('click', iniciarAudio);
+        }
+
+        // Cambiar de canción al terminar
         reproductor.onended = function() {
-            indiceActual++;
-            if (indiceActual < listaAudios.length) {
-                reproductor.src = listaAudios[indiceActual];
-                reproductor.play();
-            } else {
-
-                indiceActual = 0;
-                reproductor.src = listaAudios[indiceActual];
-            }
+            indiceActual = (indiceActual + 1) % listaAudios.length;
+            reproductor.src = listaAudios[indiceActual];
+            reproductor.play();
         };
+
+        // Actualizar la barra de progreso mientras se reproduce la canción
+        reproductor.ontimeupdate = function() {
+            barraProgreso.max = reproductor.duration || 0;
+            barraProgreso.value = reproductor.currentTime;
+        };
+
+        // Permitir al usuario cambiar el tiempo de reproducción usando la barra de progreso
+        barraProgreso.addEventListener('input', function() {
+            reproductor.currentTime = barraProgreso.value;
+        });
+
+        // Función para silenciar o activar el sonido
+        function toggleMute() {
+            reproductor.muted = !reproductor.muted;
+            document.getElementById("botonMute").textContent = reproductor.muted ? "Activar sonido" : "Silenciar";
+        }
     </script>
+
     <h1>Violencia Intrafamiliar en Chile</h1>
 </header>
 
