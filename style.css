@@ -9,7 +9,7 @@ body {
 
 /* Imagen de fondo para el header */
 .header-fondo {
-    background-image: url('imagenes/header.jpg');
+    background-image: url('imagenes/titulos.jpg');
     background-size: cover;  /* La imagen cubre todo el header */
     background-position: center;  /* Centra la imagen */
     color: white;  /* Cambiar el color del texto si es necesario */
@@ -26,6 +26,18 @@ body {
     text-align: center;
     margin: 0;
 }
+
+.logo {
+    background-image: url('imagenes/logo.png'); /* Ruta del logo */
+    background-size: contain; /* Ajusta el logo a su tamaño */
+    background-repeat: no-repeat; /* No repetir la imagen del logo */
+    position: absolute; /* Permite posicionar el logo */
+    top: 20px; /* Ajusta la posición vertical */
+    left: 20px; /* Ajusta la posición horizontal */
+    width: 200px; /* Ajusta el ancho del logo */
+    height: 200px; /* Ajusta la altura del logo */
+}
+
 
 .fondo-contexto {
     background-image: url('imagenes/coronavirus-banner.jpg');
