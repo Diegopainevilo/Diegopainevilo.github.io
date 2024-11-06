@@ -1,3 +1,51 @@
+
+/* Contenedor para el selector */
+.selector-anio {
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Estilo del <label> para mejorar alineación con el <select> */
+  .selector-anio label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  /* Estilo general para el <select> */
+  #selector-año {
+    padding: 5px 50px; /* Relleno interno para agrandar el área de clic */
+    border: 2px solid #ccc; /* Borde con grosor y color personalizado */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #f9f9f9; /* Fondo claro */
+    color: #333; /* Color del texto */
+    font-size: 16px; /* Tamaño del texto */
+    appearance: none; /* Elimina el estilo predeterminado del navegador en algunos navegadores */
+    outline: none; /* Elimina el contorno al hacer clic */
+  }
+  
+  /* Estilo personalizado para la flecha en el selector (algunos navegadores) */
+  #selector-año {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24"><path fill="gray" d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+  }
+  
+  /* Cambio del cursor al pasar por encima */
+  #selector-año:hover {
+    border-color: #888; /* Cambia el color del borde al pasar el cursor */
+    background-color: #f1f1f1; /* Fondo más claro */
+  }
+  
+  /* Efecto de foco cuando se hace clic */
+  #selector-año:focus {
+    border-color: #555; /* Borde de color más oscuro */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Sombra suave alrededor del selector */
+  }
+
+
+
 /* Estilos básicos para la página */
 body {
     background-color: #f0f0f0;

@@ -207,28 +207,40 @@
 
     <!-- Contenedor con nueva imagen de fondo -->
     <div class="contenedor2">
-    <!-- Texto a la izquierda -->
-    <div class="texto">
-        <h2 >Descripción del Gráfico</h2>
+      <!-- Texto a la izquierda -->
+      <div class="texto">
+        <!-- Selector de año dentro del fondo de la descripción -->
+        <div class="selector-anio">
+          <label for="selector-año">Selecciona el año:</label>
+          <select id="selector-año">
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021" selected>2021</option>
+            <option value="2022">2022</option>
+          </select>
+        </div>
+    
+
         <p class="texto-bloque">
-            Este gráfico muestra cerca de 120.000 casos de los tipos de violencia intrafamiliar durante el año 2021.
             Los datos están agrupados en categorías como violencia hacia adultos mayores, hombres, mujeres, niños y casos no clasificados.
         </p>
-    </div>
 
-    <!-- Gráfico a la derecha -->
-    <div id="grafico2" class="grafico"></div>
+      </div>
+    
+      <!-- Gráfico a la derecha -->
+      <div id="grafico2" class="grafico"></div>
+    </div>
 
 
     
     </div>
 
-    <div class="fila">
-        <div class="columna">75% de las víctimas en chile son mujeres</div>
-        <div class="columna">15% de las víctimas en chile son hombres</div>
-        <div class="columna">3% de las victimas en chile son adultos mayores</div>
-        <div class="columna">2% de las victimas en chile son niños</div>
-    </div>
 
 
 <div class="fondo-conclusion">
@@ -236,9 +248,8 @@
 
     <div class="texto-contexto">  
         <p>
-            A través de este gráfico funnel, se destaca que un 75% de los casos de violencia intrafamiliar están dirigidos a mujeres, 
-            lo que confirma la gravedad de esta problemática y la urgencia de abordarla. Aunque también se registran casos de violencia 
-            hacia hombres (15%), adultos mayores (3%), niños (2%) y casos no clasificados (4%), los datos subrayan cómo las mujeres 
+            A través de este gráfico funnel queremos destacar que la mayor parte de los casos de violencia intrafamiliar están dirigidos a mujeres, 
+            lo que confirma la gravedad de esta problemática y la urgencia de abordarla. Los datos subrayan cómo las mujeres 
             siguen siendo las principales víctimas de violencia en el hogar. Esto refuerza la necesidad de generar conciencia sobre la 
             vulnerabilidad de las mujeres, especialmente en situaciones de confinamiento como las vividas durante la pandemia.
         </p>

@@ -78,72 +78,78 @@ fetch('estadisticas-delictuales_Chile.json')
   .catch(error => console.error('Error al cargar el archivo JSON:', error));
 
 ///////////////////////////////////////
-let añoSeleccionado = 2021;
-// Cargar el archivo JSON usando fetch
-fetch('estadisticas-delictuales_Chile.json')
-  .then(response => response.json())  // Leer el contenido como JSON
-  .then(data => {
-    // Acceder a los datos en la hoja "Hoja3"
-    let registros = data.Hoja3;
+let añoSeleccionado = 2021; // Año por defecto
 
-    // Crear un objeto para almacenar los tipos de violencia para un año específico
-    let tiposViolencia = {
-      "Violencia intrafamiliar a adulto mayor": 0,
-      "Violencia intrafamiliar a hombre": 0,
-      "Violencia intrafamiliar a mujer": 0,
-      "Violencia intrafamiliar a niño": 0,
-      "Violencia intrafamiliar no clasificado": 0
-    };
+// Función para cargar y actualizar el gráfico según el año seleccionado
+function cargarGrafico(año) {
+  fetch('estadisticas-delictuales_Chile.json')
+    .then(response => response.json())
+    .then(data => {
+      let registros = data.Hoja3;
 
-    // Filtrar los registros por el año seleccionado y sumar los valores por tipo de violencia
-    registros.forEach(registro => {
-      if (registro['AÑO'] === añoSeleccionado) {
-        tiposViolencia["Violencia intrafamiliar a adulto mayor"] += registro['Violencia intrafamiliar a adulto mayor'] || 0;
-        tiposViolencia["Violencia intrafamiliar a hombre"] += registro['Violencia intrafamiliar a hombre'] || 0;
-        tiposViolencia["Violencia intrafamiliar a mujer"] += registro['Violencia intrafamiliar a mujer'] || 0;
-        tiposViolencia["Violencia intrafamiliar a niño"] += registro['Violencia intrafamiliar a niño'] || 0;
-        tiposViolencia["Violencia intrafamiliar no clasificado"] += registro['Violencia intrafamiliar no clasificado'] || 0;
-      }
-    });
+      // Reiniciar los valores de tipos de violencia para el año específico
+      let tiposViolencia = {
+        "Violencia intrafamiliar a adulto mayor": 0,
+        "Violencia intrafamiliar a hombre": 0,
+        "Violencia intrafamiliar a mujer": 0,
+        "Violencia intrafamiliar a niño": 0,
+        "Violencia intrafamiliar no clasificado": 0
+      };
 
-    // Extraer los tipos de violencia y sus valores en arrays para Plotly
-    let tipos = Object.keys(tiposViolencia);
-    let valores = Object.values(tiposViolencia);
+      // Filtrar y sumar los valores según el año
+      registros.forEach(registro => {
+        if (registro['AÑO'] === año) {
+          tiposViolencia["Violencia intrafamiliar a adulto mayor"] += registro['Violencia intrafamiliar a adulto mayor'] || 0;
+          tiposViolencia["Violencia intrafamiliar a hombre"] += registro['Violencia intrafamiliar a hombre'] || 0;
+          tiposViolencia["Violencia intrafamiliar a mujer"] += registro['Violencia intrafamiliar a mujer'] || 0;
+          tiposViolencia["Violencia intrafamiliar a niño"] += registro['Violencia intrafamiliar a niño'] || 0;
+          tiposViolencia["Violencia intrafamiliar no clasificado"] += registro['Violencia intrafamiliar no clasificado'] || 0;
+        }
+      });
 
-    // Crear un array de colores, donde "Violencia intrafamiliar a mujer" será rojo y el resto gris
-    let colores = tipos.map(tipo => {
-      return tipo === "Violencia intrafamiliar a mujer" ? 'red' : 'grey';
-    });
+      // Preparar los datos para Plotly
+      let tipos = Object.keys(tiposViolencia);
+      let valores = Object.values(tiposViolencia);
+      let colores = tipos.map(tipo => tipo === "Violencia intrafamiliar a mujer" ? 'red' : 'grey');
 
-    // Crear el funnel plot con Plotly.js
-    var datos = {
-      type: 'funnel',
-      y: tipos,  // Tipos de violencia en el eje Y
-      x: valores,  // Valores de violencia en el eje X
-      textinfo: "value+percent total",  // Mostrar el valor y el porcentaje
-      marker: { color: colores }  // Aplicar colores personalizados
-    };
+      let datos = {
+        type: 'funnel',
+        y: tipos,
+        x: valores,
+        textinfo: "value+percent total",
+        marker: { color: colores }
+      };
 
-    var layout = {
-      title: `Comparación de Tipos de Violencia Intrafamiliar en ${añoSeleccionado}`,
-      xaxis: { title: 'Cantidad de Casos' },
-      width: 865,   // Mantener el ancho del marco
-      height: 500,  // Mantener la altura del gráfico
-      margin: {
-        l: 150,  // Incrementar el margen izquierdo para las etiquetas
-        r: 50,   // Ajustar margen derecho
-        t: 50,   // Ajustar margen superior
-        b: 50    // Ajustar margen inferior
-      },
-      xaxis: {
-        domain: [0.2, 0.8]  // Hacer el gráfico más estrecho dentro del marco
-      }
-    };
+      let layout = {
+        title: `Comparación de Tipos de Violencia Intrafamiliar en ${año}`,
+        xaxis: { title: 'Cantidad de Casos' },
+        width: 865,
+        height: 500,
+        margin: {
+          l: 150,
+          r: 50,
+          t: 50,
+          b: 50
+        },
+        xaxis: {
+          domain: [0.2, 0.8]
+        }
+      };
 
-    // Dibujar el gráfico
-    Plotly.newPlot('grafico2', [datos], layout);
-  })
-  .catch(error => console.error('Error al cargar el archivo JSON:', error));
+      // Dibujar o actualizar el gráfico
+      Plotly.newPlot('grafico2', [datos], layout);
+    })
+    .catch(error => console.error('Error al cargar el archivo JSON:', error));
+}
+
+// Cargar el gráfico con el año por defecto al cargar la página
+cargarGrafico(añoSeleccionado);
+
+// Escuchar el cambio en el selector de año
+document.getElementById('selector-año').addEventListener('change', function(event) {
+  añoSeleccionado = parseInt(event.target.value);
+  cargarGrafico(añoSeleccionado); // Actualizar el gráfico con el nuevo año
+});
 
 
   /// GRAFICO DINAMICO
@@ -246,3 +252,7 @@ fetch('estadisticas-delictuales_Chile.json')
 
   })
   .catch(error => console.error('Error al cargar el archivo JSON:', error));
+
+
+
+  
