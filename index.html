@@ -114,9 +114,12 @@
 
     <h2 class="fondo-titulos">Fabián Marcelo Márquez Sepúlveda y Diego Pablo Eugenio Painevilo Martínez</h2>
 
-    <div class="fondo-contexto">
+    <div class="fondo-contexto" id="botonMostrarContextoContainer">
+        <button class="boton-contexto" onclick="mostrarContexto()" id="botonMostrarContexto">Mostrar Contexto</button>
+    </div>
+    
+    <div class="fondo-contexto" id="fondoContexto" style="display: none;">
         <h2 style="color: white;">Contexto</h2>
-
         <div class="texto-contexto">  
             <p>
                 La pandemia de COVID-19, declarada como una emergencia de salud pública en enero de 2020, generó grandes disrupciones 
@@ -129,6 +132,7 @@
                 crítico.
             </p>
         </div>
+
     </div>
     
     <h2 class="fondo-titulos">Gráfico de Violencia Intrafamiliar</h2>

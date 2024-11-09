@@ -255,4 +255,40 @@ fetch('estadisticas-delictuales_Chile.json')
 
 
 
-  
+
+
+
+  function mostrarContexto() {
+    const contexto = document.getElementById("fondoContexto");
+    const botonMostrarContexto = document.getElementById("botonMostrarContexto");
+    sonidoBoton.play()
+    
+    // Crear el botón "Ocultar Contexto"
+    const botonOcultarContexto = document.createElement("button");
+    botonOcultarContexto.className = "boton-contexto";
+    botonOcultarContexto.id = "botonOcultarContexto";
+    botonOcultarContexto.textContent = "Ocultar Contexto";
+    botonOcultarContexto.onclick = ocultarContexto;  // Asociamos la acción de ocultar
+
+    if (contexto.style.display === "none") {
+        contexto.style.display = "block"; // Muestra el contexto
+        botonMostrarContexto.replaceWith(botonOcultarContexto); // Reemplaza el botón de mostrar por el de ocultar
+    }
+}
+
+function ocultarContexto() {
+    const contexto = document.getElementById("fondoContexto");
+    const botonOcultarContexto = document.getElementById("botonOcultarContexto");
+    sonidoBoton.play()
+    
+    
+    // Crear el botón "Mostrar Contexto"
+    const botonMostrarContexto = document.createElement("button");
+    botonMostrarContexto.className = "boton-contexto";
+    botonMostrarContexto.id = "botonMostrarContexto";
+    botonMostrarContexto.textContent = "Mostrar Contexto";
+    botonMostrarContexto.onclick = mostrarContexto;  // Asociamos la acción de mostrar
+
+    contexto.style.display = "none"; // Oculta el contexto
+    botonOcultarContexto.replaceWith(botonMostrarContexto); // Reemplaza el botón de ocultar por el de mostrar
+}

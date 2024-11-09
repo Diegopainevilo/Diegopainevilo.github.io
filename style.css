@@ -88,7 +88,7 @@ body {
 
 
 .fondo-contexto {
-    background-image: url('imagenes/coronavirus-banner.jpg');
+    background-image: url('imagenes/wooo.jpg');
     background-size: cover;  /* La imagen cubre todo el header */
     background-position: center;  /* Centra la imagen */
     padding:40px;  /* Espaciado interno s*/
@@ -97,7 +97,7 @@ body {
 }
 
 .fondo-dinamico {
-    background-image: url('imagenes/familia.jpg');
+    background-image: url('imagenes/wooo.jpg');
     background-size: cover;  /* La imagen cubre todo el header */
     background-position: center;  /* Centra la imagen */
     padding:40px;  /* Espaciado interno */
@@ -128,12 +128,16 @@ footer {
 }
 /* Alinear el texto como un bloque justificado */
 .texto-contexto {
-    text-align: justify;
-    margin: 0 auto;
-    width: 30%;  /* Ajustar el ancho del texto */
-    color: white;  /* Cambiar el color del texto si es necesario */
-    padding:40x;  /* Espaciado interno */
+    background-color: #333; /* Fondo gris oscuro */
+    color: #f1f1f1; /* Texto claro para mejor contraste */
+    padding: 20px; /* Espaciado alrededor del texto */
+    border-radius: 8px; /* Bordes redondeados */
+    border: 1px solid #444; /* Borde gris oscuro */
+    max-width: 800px; /* Ancho máximo opcional */
+    margin: auto; /* Centra el cuadro en la página */
 }
+
+
 
 .texto-bloque {
     text-align: justify;
@@ -175,7 +179,7 @@ footer {
 }
 
 .fondo-conclusion {
-    background-image: url('imagenes/pizarra.jpg');
+    background-image: url('imagenes/eeeeee.jpg');
     background-size: cover;  /* La imagen cubre todo el header */
     background-position: center;  /* Centra la imagen */
     padding:40px;  /* Espaciado interno */
@@ -215,7 +219,7 @@ footer {
     padding:40x;  /* Espaciado interno */
 }
 .fondo-extra {
-    background-image: url('imagenes/furry.png');
+    background-image: url('imagenes/wooo.jpg');
     background-size: cover;  /* La imagen cubre todo el header */
     background-position: center;  /* Centra la imagen */
     padding:300px;  /* Espaciado interno */
@@ -256,3 +260,5 @@ body, html {
     width: 100%;
     overflow-x: hidden;
 }
+
+
