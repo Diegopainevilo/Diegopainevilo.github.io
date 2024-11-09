@@ -19,34 +19,77 @@ fetch('estadisticas-delictuales_Chile.json')
     let años = Object.keys(violenciaPorAno);
     let valoresViolencia = Object.values(violenciaPorAno);
 
-    // Crear un array de colores para los puntos: 2021 y 2022 en rojo, el resto en azul
-    let colores = años.map(año => {
-      return (año === '2021' || año === '2022') ? 'red' : 'blue';
-    });
-
-    // Definir el trazado que combina la línea y los puntos
+    // Definir el trazado que solo contiene la línea (sin puntos)
     var lineaConPuntos = {
       x: años,
       y: valoresViolencia,
       type: 'scatter',
-      mode: 'lines',  // Línea sin puntos
+      mode: 'lines',  // Solo línea sin puntos
       line: { color: 'grey' },  // Color de la línea
-      marker: { size: 10, color: colores },  // Colores personalizados para los puntos
-      name: 'casos de violencia intrafamiliar'
+      name: 'Casos de violencia intrafamiliar',
+      hovertext: años.map((año, i) => `Año: ${año}<br>Casos: ${valoresViolencia[i]}`), // Texto emergente personalizado
+      hoverinfo: 'text',  // Mostrar solo el texto personalizado
+      hoverlabel: {
+        bgcolor: 'white',  // Fondo blanco
+        bordercolor: 'grey',  // Borde gris para la línea
+        font: {
+          size: 14,  // Aumentar el tamaño de la fuente
+          color: 'black'  // Color de texto negro
+        }
+      }
     };
 
-    // Agregar anotaciones con flechas para 2021 y 2022
+    // Trazado para destacar el punto de 2021 y 2022
+    var puntoDestacado = {
+      x: ['2021', '2022'],
+      y: [violenciaPorAno['2021'], violenciaPorAno['2022']],
+      mode: 'markers',  // Solo mostrar puntos
+      marker: {
+        color: 'red',
+        size: 10
+      },
+      name: 'Aumento significativo',
+      hovertext: ['Aumento significativo en 2021', 'Aumento significativo en 2022'],
+      hoverinfo: 'text',  // Mostrar solo el texto personalizado
+      hoverlabel: {
+        bgcolor: 'white',  // Fondo blanco
+        bordercolor: 'red',  // Borde rojo
+        font: {
+          size: 14,  // Aumentar el tamaño de la fuente
+          color: 'black'  // Color de texto negro
+        }
+      }
+    };
+
+    // Configuración del layout con un slider de rango
     var layout = {
       title: {
-        text: 'Casos de violencia intrafamiliar<br><span style="font-size: 16px; color: grey;">De 2020 a 2021 se registro un aumento de cerca de 26.000 casos.</span>',
-        font: {
-          size: 20
-        }
-      },  // Título principal con subtítulo
+        text: 'Casos de violencia intrafamiliar<br><span style="font-size: 16px; color: grey;">De 2020 a 2021 se registró un aumento de cerca de 26.000 casos.</span>',
+        font: { size: 20 }
+      },
       paper_bgcolor: 'white',  // Color de fondo del gráfico
       plot_bgcolor: 'white',   // Color de fondo de la zona de trazado
+      margin: {
+        t: 50, // margen superior
+        b: 100, // margen inferior más grande (para dar espacio al slider)
+        l: 50,  // margen izquierdo
+        r: 50   // margen derecho
+      },
       xaxis: { 
         tickvals: años,  // Mostrar todos los años en el eje X
+        ticktext: años,  // Mostrar los años como etiquetas en el slider
+        showgrid: false,  // Desactivar las líneas de la cuadrícula en el eje X
+        rangeslider: {
+          visible: true,  // Habilitar el slider en el eje X
+          thickness: 0.1, // Grosor del slider
+          borderwidth: 1,  // Borde alrededor del slider
+          bordercolor: '#888', // Color del borde
+          bgcolor: '#f2f2f2', // Fondo más claro para el slider
+          range: [2020, 2022], // Rango inicial del slider
+          height: 60, // Aumentar la altura del slider
+        },
+        ticklen: 0,  
+        tickwidth: 0, 
       },
       yaxis: { 
         rangemode: 'tozero',   // Asegura que el eje Y comience desde 0
@@ -54,28 +97,27 @@ fetch('estadisticas-delictuales_Chile.json')
       showlegend: false,  // Eliminar la leyenda
       annotations: [
         {
-          x: '2021.5',  // Punto medio entre 2021 y 2022
-          y: (violenciaPorAno['2021'] + violenciaPorAno['2022']) / 2,  // Valor medio de los dos años
-          xref: 'x',
-          yref: 'y',
-          text: 'Aumento significativo durante 2021-2022',
-          showarrow: true,
-          arrowhead: 6,
-          ax: 0,    // Desplazamiento horizontal de la flecha (centrado)
-          ay: -50,  // Desplazamiento vertical de la flecha
+          x: 0.5,  // Ubicación horizontal en el centro
+          y: -0.3,  // Colocarlo un poco más abajo
+          xref: 'paper',
+          yref: 'paper',
+          text: 'Ajuste temporal con sliders',
+          showarrow: false,
           font: {
-            color: 'red',
-            size: 14
+            size: 16,
+            color: 'black'
           },
-          arrowcolor: 'red'
+          align: 'center'
         }
       ]
     };
 
-    // Dibujar el gráfico en el div 'grafico1' combinando la línea y los puntos
-    Plotly.newPlot('grafico1', [lineaConPuntos], layout);
+    // Crear el gráfico con slider de rango y punto destacado
+    Plotly.newPlot('grafico1', [lineaConPuntos, puntoDestacado], layout);
   })
   .catch(error => console.error('Error al cargar el archivo JSON:', error));
+
+
 
 ///////////////////////////////////////
 let añoSeleccionado = 2021; // Año por defecto
